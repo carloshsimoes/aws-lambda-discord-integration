@@ -1,0 +1,7 @@
+.venv/
+_artefatos/
+__pycache__
+__pycache__/
+.vscode/
+.env
+nohup.out
