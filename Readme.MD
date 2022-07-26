@@ -6,6 +6,7 @@ Essa implementação foi uma melhoria da Lambda disponibilizada no Artigo do Dan
 
 - [Discord notification using CloudWatch Alarms, SNS and AWS Lambda](https://towardsdatascience.com/discord-notification-using-cloudwatch-alarms-sns-and-aws-lambda-71393861699f)
 
+&nbsp;
 
 Podemos no SNS, apontar criar uma nova **subscription** HTTPS e apontar o URL do Webhook para Envio de notificações.
 
@@ -17,6 +18,7 @@ Em demais casos, vamos enviar somente o JSON indentado.
 
 A Lambda vai retornar os logs em sua execução com as informações facilitando assim pegar esses logs aí no CloudWatchLogs para debuggar se preciso!
 
+&nbsp;
 
 **Atualmente validado e testado o PARSE de DICT/JSON para STRING/TEXT para os serviços:**
 
@@ -26,9 +28,11 @@ A Lambda vai retornar os logs em sua execução com as informações facilitando
 - AWS/SQS;
 - AWS/S3 - Event notifications;
 
+&nbsp;
+> Para demais Notificações como pontuado acima, ele vai retornar/enviar um **JSON indentado** somente.
 
-Para demais Notificações como pontuado acima, ele vai retornar/enviar um JSON indentado somente.
-
+&nbsp;
+&nbsp;
 
 # Para configurar a Lambda, informar as especificações do Runtime e ENVs:
 
@@ -40,7 +44,7 @@ Para demais Notificações como pontuado acima, ele vai retornar/enviar um JSON 
 
 - Handler: lambda.handler
 
-
+&nbsp;
 
 ## Environments (ENVS)
 
@@ -52,13 +56,16 @@ Para demais Notificações como pontuado acima, ele vai retornar/enviar um JSON 
 
 - USERNAME_AVATAR_URL; Avatar do Usuário (URL para PNG/JPG) exibido no envio das Mensagens
 
+&nbsp;
+
 > Sugestão para o AVATAR: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
 
-
+&nbsp;
 ## Triggers:
 
 Especificar os tópicos SNS que irão triggar a função Lambda!
 
+&nbsp;
 
 # Monitorando execuções da Lambda no CloudWatch Logs Insights:
 
@@ -71,6 +78,17 @@ fields @timestamp, @message
 | sort @timestamp asc
 | limit 2000
 ```
+
+&nbsp;
+
+# Screenshots
+
+
+![Screenshot](screenshots/alertas01.png)
+
+![Screenshot](screenshots/alertas02.png)
+
+![Screenshot](screenshots/alertas03.png)
 
 
 
