@@ -77,45 +77,40 @@ def parseObjectNotification(dictObject, service=None, shortMessage=False):
 
     print(f'START >>>>> parseObjectNotification [originNotificationDict]: {originNotificationDict}')
 
+    if service in customizedServicesAvailable:
 
-    if service is not None:
-
-        if service in customizedServicesAvailable:
-
-            if not shortMessage:
-
-                newNotificationDict = {
-                    "Alarm": originNotificationDict["AlarmName"],
-                    "Description": originNotificationDict["AlarmDescription"],
-                    "AWSAccountId": originNotificationDict["AWSAccountId"],
-                    "Updated Timestamp": originNotificationDict["AlarmConfigurationUpdatedTimestamp"],
-                    "Previous Status": originNotificationDict["OldStateValue"],
-                    "New Status": originNotificationDict["NewStateValue"],
-                    "Reason": originNotificationDict["NewStateReason"],
-                    "State ChangeTime": originNotificationDict["StateChangeTime"],
-                    "Region": originNotificationDict["Region"],
-                    "Alarm ARN": originNotificationDict["AlarmArn"],
-                    "Trigger MetricName": originNotificationDict["Trigger"]["MetricName"],
-                    "Trigger ComparisonOperator": originNotificationDict["Trigger"]["ComparisonOperator"],
-                    "Trigger Threshold": str(originNotificationDict["Trigger"]["Threshold"]),
-                    "Trigger NameSpace": originNotificationDict["Trigger"]["Namespace"],
-                    originNotificationDict["Trigger"]["Dimensions"][0]["name"] if len(originNotificationDict["Trigger"]["Dimensions"]) > 0 else "Trigger Dimensions": originNotificationDict["Trigger"]["Dimensions"][0]["value"] if len(originNotificationDict["Trigger"]["Dimensions"]) > 0 else None
-                }
+        if not shortMessage:
+            newNotificationDict = {
+                "Alarm": originNotificationDict["AlarmName"],
+                "Description": originNotificationDict["AlarmDescription"],
+                "AWSAccountId": originNotificationDict["AWSAccountId"],
+                "Updated Timestamp": originNotificationDict["AlarmConfigurationUpdatedTimestamp"],
+                "Previous Status": originNotificationDict["OldStateValue"],
+                "New Status": originNotificationDict["NewStateValue"],
+                "Reason": originNotificationDict["NewStateReason"],
+                "State ChangeTime": originNotificationDict["StateChangeTime"],
+                "Region": originNotificationDict["Region"],
+                "Alarm ARN": originNotificationDict["AlarmArn"],
+                "Trigger MetricName": originNotificationDict["Trigger"]["MetricName"],
+                "Trigger ComparisonOperator": originNotificationDict["Trigger"]["ComparisonOperator"],
+                "Trigger Threshold": str(originNotificationDict["Trigger"]["Threshold"]),
+                "Trigger NameSpace": originNotificationDict["Trigger"]["Namespace"],
+                originNotificationDict["Trigger"]["Dimensions"][0]["name"] if len(originNotificationDict["Trigger"]["Dimensions"]) > 0 else "Trigger Dimensions": originNotificationDict["Trigger"]["Dimensions"][0]["value"] if len(originNotificationDict["Trigger"]["Dimensions"]) > 0 else None
+            }
 
 
-            else:
+        else:
+            newNotificationDict = {
+                "Alarm": originNotificationDict["AlarmName"],
+                "Description": originNotificationDict["AlarmDescription"],
+                "Trigger MetricName": originNotificationDict["Trigger"]["MetricName"],
+                "Trigger Threshold": str(originNotificationDict["Trigger"]["Threshold"]),
+                "Status": originNotificationDict["NewStateValue"],
+                originNotificationDict["Trigger"]["Dimensions"][0]["name"] if len(originNotificationDict["Trigger"]["Dimensions"]) > 0 else "Trigger Dimensions": originNotificationDict["Trigger"]["Dimensions"][0]["value"] if len(originNotificationDict["Trigger"]["Dimensions"]) > 0 else None
+            }
 
-                newNotificationDict = {
-                    "Alarm": originNotificationDict["AlarmName"],
-                    "Description": originNotificationDict["AlarmDescription"],
-                    "Trigger MetricName": originNotificationDict["Trigger"]["MetricName"],
-                    "Trigger Threshold": str(originNotificationDict["Trigger"]["Threshold"]),
-                    "Status": originNotificationDict["NewStateValue"],
-                    originNotificationDict["Trigger"]["Dimensions"][0]["name"] if len(originNotificationDict["Trigger"]["Dimensions"]) > 0 else "Trigger Dimensions": originNotificationDict["Trigger"]["Dimensions"][0]["value"] if len(originNotificationDict["Trigger"]["Dimensions"]) > 0 else None
-                }
 
-
-    else: # if not service
+    else: # service is None
 
         if originNotificationDict.get("Records", None) is not None:
 
