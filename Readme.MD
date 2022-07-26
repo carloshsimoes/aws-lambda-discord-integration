@@ -28,10 +28,8 @@ A Lambda vai retornar os logs em sua execução com as informações facilitando
 - AWS/SQS;
 - AWS/S3 - Event notifications;
 
-&nbsp;
 > Para demais Notificações como pontuado acima, ele vai retornar/enviar um **JSON indentado** somente.
 
-&nbsp;
 &nbsp;
 
 # Para configurar a Lambda, informar as especificações do Runtime e ENVs:
@@ -44,7 +42,6 @@ A Lambda vai retornar os logs em sua execução com as informações facilitando
 
 - Handler: lambda.handler
 
-&nbsp;
 
 ## Environments (ENVS)
 
@@ -56,7 +53,6 @@ A Lambda vai retornar os logs em sua execução com as informações facilitando
 
 - USERNAME_AVATAR_URL; Avatar do Usuário (URL para PNG/JPG) exibido no envio das Mensagens
 
-&nbsp;
 
 > Sugestão para o AVATAR: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
 
