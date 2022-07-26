@@ -6,7 +6,6 @@ Essa implementação foi uma melhoria da Lambda disponibilizada no Artigo do Dan
 
 - [Discord notification using CloudWatch Alarms, SNS and AWS Lambda](https://towardsdatascience.com/discord-notification-using-cloudwatch-alarms-sns-and-aws-lambda-71393861699f)
 
-&nbsp;
 
 Podemos no SNS, apontar criar uma nova **subscription** HTTPS e apontar o URL do Webhook para Envio de notificações.
 
@@ -18,7 +17,6 @@ Em demais casos, vamos enviar somente o JSON indentado.
 
 A Lambda vai retornar os logs em sua execução com as informações facilitando assim pegar esses logs aí no CloudWatchLogs para debuggar se preciso!
 
-&nbsp;
 
 **Atualmente validado e testado o PARSE de DICT/JSON para STRING/TEXT para os serviços:**
 
@@ -30,7 +28,6 @@ A Lambda vai retornar os logs em sua execução com as informações facilitando
 
 > Para demais Notificações como pontuado acima, ele vai retornar/enviar um **JSON indentado** somente.
 
-&nbsp;
 
 # Para configurar a Lambda, informar as especificações do Runtime e ENVs:
 
@@ -56,7 +53,6 @@ A Lambda vai retornar os logs em sua execução com as informações facilitando
 
 > Sugestão para o AVATAR: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
 
-&nbsp;
 ## Triggers:
 
 Especificar os tópicos SNS que irão triggar a função Lambda!
