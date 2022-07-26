@@ -9,6 +9,13 @@ import logging
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
+customizedServicesAvailable = {
+        "AWS/EC2": "EC2",
+        "CWAgent": "EC2",
+        "AWS/RDS": "RDS",
+        "AWS/Lambda": "Lambda",
+        "AWS/SQS": "SQS"
+}
 
 
 def sendDiscordNotification(msg, webhook):
@@ -68,16 +75,9 @@ def parseObjectNotification(dictObject, service=None, shortMessage=False):
 
     newNotificationDict = None
 
-    customizedServicesAvailable = [
-        "EC2",
-        "RDS",
-        "Lambda"
-    ]
-
-
     print(f'START >>>>> parseObjectNotification [originNotificationDict]: {originNotificationDict}')
 
-    if service in customizedServicesAvailable:
+    if service in customizedServicesAvailable.values():
 
         if not shortMessage:
             newNotificationDict = {
@@ -170,20 +170,9 @@ def handler(event, context):
 
             namespaceAlarm = isAlarmTrigger.get('Namespace', 0)
 
-            if namespaceAlarm == 'AWS/Lambda':
+            if namespaceAlarm in customizedServicesAvailable.keys():
                 print(f'PARSE MESSAGE to >>>>> {namespaceAlarm}')
-                parsedMessage = parseObjectNotification(snsMessage, 'Lambda', shortMessage)
-
-
-            elif namespaceAlarm == 'AWS/EC2' or namespaceAlarm == 'CWAgent':
-                print(f'PARSE MESSAGE to >>>>> {namespaceAlarm}')
-                parsedMessage = parseObjectNotification(snsMessage, 'EC2', shortMessage)
-
-
-            elif namespaceAlarm == 'AWS/RDS':
-                print(f'PARSE MESSAGE to >>>>> {namespaceAlarm}')
-                parsedMessage = parseObjectNotification(snsMessage, 'RDS', shortMessage)
-
+                parsedMessage = parseObjectNotification(snsMessage, customizedServicesAvailable[namespaceAlarm], shortMessage)
 
 
         if not parsedMessage:

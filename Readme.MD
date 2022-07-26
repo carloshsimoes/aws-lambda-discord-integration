@@ -18,12 +18,13 @@ Em demais casos, vamos enviar somente o JSON indentado.
 A Lambda vai retornar os logs em sua execução com as informações facilitando assim pegar esses logs aí no CloudWatchLogs para debuggar se preciso!
 
 
-**Atualmente ajustado para Parse DICT ==> TEXT para serviços:**
+**Atualmente validado e testado o PARSE de DICT/JSON para STRING/TEXT para os serviços:**
 
-- AWS/EC2;
+- AWS/EC2; CWAgent;
 - AWS/RDS;
 - AWS/Lambda;
-- AWS/S3 - Event notifications
+- AWS/SQS;
+- AWS/S3 - Event notifications;
 
 
 Para demais Notificações como pontuado acima, ele vai retornar/enviar um JSON indentado somente.
