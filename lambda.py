@@ -28,7 +28,7 @@ def sendDiscordNotification(msg, webhook):
         "username": discordUserSender,
         "avatar_url": discordAvatarUrl,
         "content": discordMessage,
-        "embeds": '',
+        "embeds": [],
         "attachments": []
     }
 
